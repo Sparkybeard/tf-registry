@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output = "./generated/client"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Provider {
+  id            Int      @id @default(autoincrement())
+  namespace     String
+  type          String
+  versions      Version[]
+  gpgPublicKeys GpgPublicKey[]
+  published_at  DateTime @default(now())
+}
+
+model Version {
+  id            Int      @id @default(autoincrement())
+  name          String
+  provider      Provider @relation(fields: [providerId], references: [id])
+  providerId    Int      @unique
+  platforms     Platform[]
+  protocols     VersionProtocol[]
+}
+
+model VersionProtocol {
+  id            Int      @id @default(autoincrement())
+  version       Version  @relation(fields: [versionId], references: [id])
+  versionId     Int
+  protocol      Protocol @relation(fields: [protocolId], references: [id])
+  protocolId    Int
+}
+
+model Protocol {
+  id            Int      @id @default(autoincrement())
+  name          String
+  providers     VersionProtocol[]
+}
+
+model Platform {
+  id            Int      @id @default(autoincrement())
+  os            String
+  arch          String
+  shasum        String
+  filename      String
+  provider      Version @relation(fields: [providerId], references: [id])
+  providerId    Int
+}
+
+model GpgPublicKey {
+  id            Int      @id @default(autoincrement())
+  keyId         String
+  asciiArmor    String
+  trustSignature String
+  source        String
+  sourceUrl     String
+  provider      Provider @relation(fields: [providerId], references: [id])
+  providerId    Int      @unique
+}
