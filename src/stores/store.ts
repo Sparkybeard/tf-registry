@@ -63,17 +63,17 @@ export default class Store {
 
     // Get / Set GPG Public Keys for provider release, may already exist, and should not overlap
     const gpgPublicKeys: GpgPublicKey[] = [];
-    input.gpgPublicKeys.forEach(async (i) => {
+    input.gpgPublicKeys.map(async (i) => {
       const keyOptions = {
         keyId: i.keyId,
         asciiArmor: i.asciiArmor,
-        trustSignature: i.trustSignature,
-        source: i.source,
-        sourceUrl: i.sourceUrl,
+        trustSignature: i.trustSignature ?? 'true',
+        source: i.source ?? '',
+        sourceUrl: i.sourceUrl ?? '',
         providerId: provider.id,
       };
       const keys = await this.store.getGpgPublicKeys(keyOptions);
-      if (keys) {
+      if (keys && keys.length > 0) {
         keys.forEach((key) => {
           gpgPublicKeys.push(key);
         });
@@ -144,14 +144,7 @@ export default class Store {
   getAllProviders = async (): Promise<outmds.findProvidersPayload[]> => {
     const payload: outmds.findProvidersPayload[] = [];
 
-    const providers = await this.store.getProviders(
-      {
-        namespace: '',
-        type: '',
-      },
-      0,
-      15,
-    );
+    const providers = await this.store.getAllProviders();
     if (!providers) {
       return payload;
     }

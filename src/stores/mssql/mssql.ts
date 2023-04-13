@@ -227,6 +227,7 @@ export default class SqlServerStore {
       );
       return null;
     }
+    this.prisma.provider.findMany
 
     const result = await this.prisma.provider.findMany({
       where: opts,
@@ -238,6 +239,16 @@ export default class SqlServerStore {
     this.dg('search result from store: %o', result);
     return result;
     // return providers.map((p) => deserializeProvider(p));
+  };
+
+  /**
+   * Gets all providers from the database.
+   * @returns {Provider[] | null} - The correspondent provider models that was saved on the database or null if there was an error.
+   */
+  getAllProviders = async (): Promise<Provider[] | null> => {
+    const result = await this.prisma.provider.findMany();
+    this.dg('search result from store: %o', result);
+    return result;
   };
 
   /**

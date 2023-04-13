@@ -1,6 +1,7 @@
 import http from 'http';
 import debug from 'debug';
 import app from './src/app';
+import ngrok from 'ngrok';
 
 const dg = debug('citizen:server');
 const normalizePort = (val: string) => {
@@ -19,10 +20,17 @@ const normalizePort = (val: string) => {
   return false;
 };
 
-const run = () => {
+const run = async () => {
   const port = normalizePort(process.env.PORT || '3000');
   app.set('port', port);
+  const ng = await ngrok.connect({
+    proto: 'http',
+    addr: port.toString(),
+    region: 'eu',
+    authtoken: '2OKxpSFTLt2Cs7ATdlAeXDGVJuM_4CsKeTvn66hmZZaJ7eFme'
+  });
 
+  console.info(ng); // eslint-disable-line no-console
   const server = http.createServer(app);
   server.listen(port);
   server.on('error', (error: NodeJS.ErrnoException) => {
@@ -36,13 +44,16 @@ const run = () => {
     switch (error.code) {
       case 'EACCES':
         console.error(`${bind} requires elevated privileges`); // eslint-disable-line no-console
+        ngrok.disconnect();
         process.exit(1);
         break;
       case 'EADDRINUSE':
         console.error(`${bind} is already in use`); // eslint-disable-line no-console
+        ngrok.disconnect();
         process.exit(1);
         break;
       default:
+        ngrok.disconnect();
         throw error;
     }
   });
@@ -53,6 +64,7 @@ const run = () => {
       dg(`Listening on ${bind}`);
     }
     else {
+      ngrok.disconnect();
       throw new Error('Server address is not an object');
     }
   });
