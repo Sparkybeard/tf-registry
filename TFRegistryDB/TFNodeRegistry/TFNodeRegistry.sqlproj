@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build">
+  <Sdk Name="Microsoft.Build.Sql" Version="0.1.7-preview" />
+  <PropertyGroup>
+    <Name>TFNodeRegistry</Name>
+    <ProjectGuid>{482F3C83-6E48-4B86-AC00-438AE758F0B6}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
+    <ModelCollation>1033, CI</ModelCollation>
+  </PropertyGroup>
+  <Target Name="BeforeBuild">
+    <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
+  </Target>
+  <ItemGroup>
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Tables\" />
+  </ItemGroup>
+</Project>

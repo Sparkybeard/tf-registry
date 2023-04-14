@@ -289,6 +289,27 @@ export default class SqlServerStore {
     // return result.map((p) => deserializeProvider(p));
   };
 
+
+  /**
+   * Gets all versions from the database.
+   * @returns {Version[] | null} - The correspondent version models that were saved on the database or null if there was an error.
+   * @param {options.getAllProviderVersionsOptions} opts - The options to get the versions.
+   * @param {number} opts.providerId - The id of the entity containing the base provider info model.
+   *
+   * @returns {Version[] | null} - The correspondent version models that were saved on the database or null if there was an error.
+   */
+  getAllProviderVersions = async (
+    opts: options.getAllProviderVersionsOptions,
+  ): Promise<Version[] | null> => {
+    this.dg('search provider versions in store with %o', opts);
+    const result = await this.prisma.version.findMany({
+      where: {
+        providerId: opts.providerId,
+      }
+    });
+    return result;
+  };
+
   /**
    * Gets a protocol from the database.
    *

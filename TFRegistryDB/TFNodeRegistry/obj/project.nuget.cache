@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "aFtakTNi2xMvpd4wF0mWEE4uVjzaDF6y0oBuAgVAEsuvdwQPOfWZivY9cP7hGVybqYlGy8mqK5cKdVKs6PidHQ==",
+  "success": true,
+  "projectFilePath": "/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/TFNodeRegistry.sqlproj",
+  "expectedPackageFiles": [
+    "/Users/kuala/.nuget/packages/microsoft.netframework.referenceassemblies/1.0.0/microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
+    "/Users/kuala/.nuget/packages/microsoft.netframework.referenceassemblies.net46/1.0.0/microsoft.netframework.referenceassemblies.net46.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

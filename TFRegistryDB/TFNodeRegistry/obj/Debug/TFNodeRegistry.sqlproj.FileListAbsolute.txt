@@ -1,0 +1,9 @@
+/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/bin/Debug/TFNodeRegistry.dacpac
+/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/bin/Debug/TFNodeRegistry.dll
+/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/bin/Debug/TFNodeRegistry.pdb
+/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/obj/Debug/Model.xml
+/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/obj/Debug/refactor.xml
+/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/obj/Debug/postdeploy.sql
+/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/obj/Debug/predeploy.sql
+/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/obj/Debug/TFNodeRegistry.dll
+/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/obj/Debug/TFNodeRegistry.pdb

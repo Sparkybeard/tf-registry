@@ -67,7 +67,7 @@ export default class Store {
       const keyOptions = {
         keyId: i.keyId,
         asciiArmor: i.asciiArmor,
-        trustSignature: i.trustSignature ?? 'true',
+        trustSignature: i.trustSignature ?? '',
         source: i.source ?? '',
         sourceUrl: i.sourceUrl ?? '',
         providerId: provider.id,
@@ -187,7 +187,10 @@ export default class Store {
   getProviderVersion = async (
     p: inmds.getProviderVersion,
   ): Promise<outmds.getProviderVersionPayload | null> => {
-    const provider = await this.store.getProvider(p);
+    const provider = await this.store.getProvider({
+      namespace: p.namespace,
+      type: p.type
+    });
     if (!provider) {
       return null;
     }
@@ -223,33 +226,32 @@ export default class Store {
     if (!provider) {
       return payload;
     }
-    const versions = await this.store.getVersions({
+    const versions = await this.store.getAllProviderVersions({
       providerId: provider.id,
-      versions: [],
     });
     if (!versions) {
       return payload;
     }
 
-    versions.forEach(async (v) => {
+    const r = await Promise.all(versions.map(async (v) => {
       const protocols = await this.store.getProtocolsByVersion({
         providerId: v.id,
       });
       if (!protocols) {
-        return;
+        return null;
       }
 
       const platforms = await this.store.getPlatforms({
         providerId: v.id,
       });
       if (!platforms) {
-        return;
+        return null;
       }
 
-      payload.versions.push({
+      return {
         version: v.name,
         protocols: protocols.map((p) => p.name),
-        platforms: platforms.map((p) => {
+        platforms: platforms.map((p): outmds.PlatformPayload => {
           return {
             os: p.os,
             arch: p.arch,
@@ -257,10 +259,14 @@ export default class Store {
             shasum: p.shasum,
           };
         }),
-      });
-    });
+      };
+    }));
 
-    return payload;
+    const result = {
+      versions: r.filter((v) => v !== null),
+    } as outmds.getProviderVersionsPayload;
+
+    return result;
   };
 
   /**

@@ -56,7 +56,7 @@ model Platform {
 model GpgPublicKey {
   id            Int      @id @default(autoincrement())
   keyId         String
-  asciiArmor    String
+  asciiArmor    String   @db.NVarChar(4000)
   trustSignature String
   source        String
   sourceUrl     String

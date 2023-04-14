@@ -1,15 +1,19 @@
 {
   "name": "TFRegNodeTS",
   "version": "1.0.0",
-  "main": "main.js",
   "license": "MIT",
+  "type": "commonjs",
+  "bin": {
+    "TFRegNodeTS": "bin/TFRegNodeTS"
+  },
   "scripts": {
     "lint": "eslint --ext .ts ./src",
     "start": "ts-node-dev --respawn --transpileOnly --ignore-watch node_modules --no-notify --exit-child src/main.ts",
-    "prebuild": "npm run swagger",
-    "build": "tsc",
+    "build": "npm run build:linux && npm run build:macos && npm run build:windows",
+    "build:linux": "pkg . --compress GZip --targets node16-linux-x64 -o dist/TFRegNodeTS-linux-x64",
+    "build:macos": "pkg . --compress GZip --targets node16-macos-x64,node16-macos-arm64 -o dist/TFRegNodeTS-macos",
+    "build:windows": "pkg . --compress GZip --targets node16-win-x64 -o dist/TFRegNodeTS-win-x64.exe",
     "dev": "nodemon",
-    "swagger": "tsoa spec",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "prisma:seed": "ts-node prisma/seed.ts",
@@ -37,8 +41,9 @@
     "prisma": "^4.12.0",
     "swagger-ui-express": "^4.6.2",
     "ts-node": "^10.9.1",
+    "tsc": "^2.0.4",
     "tsoa": "^5.1.1",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.4"
   },
   "dependencies": {
     "@prisma/client": "^4.12.0",

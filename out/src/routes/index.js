@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
+const express_1 = tslib_1.__importDefault(require("express"));
+const service_discovery_1 = tslib_1.__importDefault(require("./service-discovery"));
+const providers_1 = tslib_1.__importDefault(require("./providers"));
+const router = express_1.default.Router();
+router.use('/', service_discovery_1.default);
+router.use('/v1/providers', providers_1.default);
+router.get('/health', (_req, res) => {
+    res.send('ok');
+});
+exports.default = router;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvcm91dGVzL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUFBLDhEQUE4QjtBQUM5QixvRkFBMkM7QUFDM0Msb0VBQXlDO0FBRXpDLE1BQU0sTUFBTSxHQUFHLGlCQUFPLENBQUMsTUFBTSxFQUFFLENBQUM7QUFFaEMsTUFBTSxDQUFDLEdBQUcsQ0FBQyxHQUFHLEVBQUUsMkJBQVEsQ0FBQyxDQUFDO0FBQzFCLE1BQU0sQ0FBQyxHQUFHLENBQUMsZUFBZSxFQUFFLG1CQUFjLENBQUMsQ0FBQztBQUU1QyxNQUFNLENBQUMsR0FBRyxDQUFDLFNBQVMsRUFBRSxDQUFDLElBQUksRUFBRSxHQUFHLEVBQUUsRUFBRTtJQUNsQyxHQUFHLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxDQUFDO0FBQ2pCLENBQUMsQ0FBQyxDQUFDO0FBRUgsa0JBQWUsTUFBTSxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGV4cHJlc3MgZnJvbSAnZXhwcmVzcyc7XG5pbXBvcnQgc2Ryb3V0ZXMgZnJvbSAnLi9zZXJ2aWNlLWRpc2NvdmVyeSc7XG5pbXBvcnQgcHJvdmlkZXJyb3V0ZXMgZnJvbSAnLi9wcm92aWRlcnMnO1xuXG5jb25zdCByb3V0ZXIgPSBleHByZXNzLlJvdXRlcigpO1xuXG5yb3V0ZXIudXNlKCcvJywgc2Ryb3V0ZXMpO1xucm91dGVyLnVzZSgnL3YxL3Byb3ZpZGVycycsIHByb3ZpZGVycm91dGVzKTtcblxucm91dGVyLmdldCgnL2hlYWx0aCcsIChfcmVxLCByZXMpID0+IHtcbiAgcmVzLnNlbmQoJ29rJyk7XG59KTtcblxuZXhwb3J0IGRlZmF1bHQgcm91dGVyO1xuIl19

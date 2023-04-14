@@ -1,0 +1,46 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/TFNodeRegistry.sqlproj": {}
+  },
+  "projects": {
+    "/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/TFNodeRegistry.sqlproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/TFNodeRegistry.sqlproj",
+        "projectName": "TFNodeRegistry",
+        "projectPath": "/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/TFNodeRegistry.sqlproj",
+        "packagesPath": "/Users/kuala/.nuget/packages/",
+        "outputPath": "/Users/kuala/Documents/Projects/MBCP/TFRegNodeTS/TFRegistryDB/TFNodeRegistry/obj/",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "/Users/kuala/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net46"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/ptbcp/_packaging/ptbcp/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net46": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net46": {
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )"
+            }
+          }
+        }
+      }
+    }
+  }
+}
