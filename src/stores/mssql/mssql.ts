@@ -5,7 +5,7 @@ import {
   Protocol,
   Provider,
   Version,
-} from '../../../prisma/generated/client/index';
+} from './client/index';
 import { debug } from 'debug';
 import * as options from '../../models/store/options';
 

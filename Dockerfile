@@ -1,21 +1,21 @@
-FROM --platform=linux/amd64 node:latest as build
+FROM node:latest as build
 
 WORKDIR /app
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
 COPY package.json ./
 COPY yarn.lock ./
+COPY bin/TFRegNodeTS ./bin/TFRegNodeTS
 
-RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
 RUN npm install
 COPY . .
-RUN npm run build:linux
+RUN npm run build
 
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
+FROM mcr.microsoft.com/cbl-mariner/base/nodejs:16
 
-COPY --from=build /app/dist/TFRegNodeTS-linux-x64 /usr/local/bin/tfreg
-RUN ls -al /usr/local/bin
+WORKDIR /tfreg
+COPY package.json ./
+RUN npm install
+COPY --from=build /app/out  ./out
+COPY --from=build /app/bin ./bin
 
-WORKDIR /citizen
 EXPOSE 3000
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "prod" ]
